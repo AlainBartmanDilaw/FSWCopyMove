@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Database" Category="Database" Bounds="-161.961175003046,-146.021082590489,548.336705627437,430.555998093409" Group="Expanded" Label="SearchDuplicates.db" />
+    <Node Id="Fichier" Category="Table" Bounds="-141.961158515083,-106.020982590489,289.596671346029,197.880398266602" Group="Expanded" Label="Fichier" />
+    <Node Id="Fichier_DteMdf" Category="Field" Bounds="-32.8811538357207,-10.0607630836435,60.3566666666667,25.96" Description="text" Label="DteMdf" />
+    <Node Id="Fichier_FullName" Category="Field" Bounds="57.475512830946,-10.0606834083601,70.16,25.96" Description="text" Label="FullName" />
+    <Node Id="Fichier_Idt" Category="Field Primary" Bounds="-121.96115620931,-66.0208630836435,50,25.96" Description="bigint" Label="Idt" />
+    <Node Id="Fichier_Name" Category="Field" Bounds="38.0388438161216,-66.0208825904891,51.6966666666667,25.96" Description="text" Label="Name" />
+    <Node Id="Fichier_Size" Category="Field" Bounds="-41.9611562093097,-66.0208630836435,50,25.96" Description="bigint" Label="Size" />
+    <Node Id="Fichier_etExists" Category="Field" Bounds="-121.961158515083,-10.0607630836435,59.08,25.96" Description="text" Label="etExists" />
+    <Node Id="Fichier_hashCode" Category="Field" Bounds="-121.961157480876,45.8993351829581,72.5833333333333,25.96" Description="text" Label="hashCode" />
+    <Node Id="Prm" Category="Table" Bounds="-132.364511489858,121.859515676112,170.00002288818,141.9203" Group="Expanded" Label="Prm" UseManualLocation="True" />
+    <Node Id="PrmVal" Category="Table" Bounds="165.038848978678,122.614455662051,201.336675923665,141.9203" Group="Expanded" Label="PrmVal" UseManualLocation="True" />
+    <Node Id="PrmVal_Idt" Category="Field Primary" Bounds="185.038852691648,162.614555662051,50,25.96" Description="bigint" Label="Idt" />
+    <Node Id="PrmVal_Prm_Idt" Category="Field" Bounds="185.038848978678,218.574655662051,60.5366666666666,25.96" Description="bigint" Label="Prm_Idt" />
+    <Node Id="PrmVal_Seq_Num" Category="Field" Bounds="275.575524902344,218.574655662051,70.8,25.96" Description="bigint" Label="Seq_Num" />
+    <Node Id="PrmVal_Val" Category="Field" Bounds="265.038852691648,162.61455566205,50,25.96" Description="text" Label="Val" />
+    <Node Id="Prm_Idt" Category="Field Primary" Bounds="-112.364494323727,161.859615676112,50,25.96" Description="bigint" Label="Idt" />
+    <Node Id="Prm_Lib" Category="Field Optional" Bounds="-112.364488601679,217.819715676113,50,25.96" Description="text" Label="Lib" />
+    <Node Id="Prm_Nom" Category="Field" Bounds="-32.3644886016787,161.859635182958,50,25.96" Description="text" Label="Nom" />
+  </Nodes>
+  <Links>
+    <Link Source="Database" Target="Fichier" Category="Contains" />
+    <Link Source="Database" Target="Prm" Category="Contains" />
+    <Link Source="Database" Target="PrmVal" Category="Contains" />
+    <Link Source="Fichier" Target="Fichier_DteMdf" Category="Contains" />
+    <Link Source="Fichier" Target="Fichier_FullName" Category="Contains" />
+    <Link Source="Fichier" Target="Fichier_Idt" Category="Contains" />
+    <Link Source="Fichier" Target="Fichier_Name" Category="Contains" />
+    <Link Source="Fichier" Target="Fichier_Size" Category="Contains" />
+    <Link Source="Fichier" Target="Fichier_etExists" Category="Contains" />
+    <Link Source="Fichier" Target="Fichier_hashCode" Category="Contains" />
+    <Link Source="Prm" Target="Prm_Idt" Category="Contains" />
+    <Link Source="Prm" Target="Prm_Lib" Category="Contains" />
+    <Link Source="Prm" Target="Prm_Nom" Category="Contains" />
+    <Link Source="PrmVal" Target="PrmVal_Idt" Category="Contains" />
+    <Link Source="PrmVal" Target="PrmVal_Prm_Idt" Category="Contains" />
+    <Link Source="PrmVal" Target="PrmVal_Seq_Num" Category="Contains" />
+    <Link Source="PrmVal" Target="PrmVal_Val" Category="Contains" />
+    <Link Source="PrmVal_Prm_Idt" Target="Prm_Idt" Bounds="215.642736339963,-29.9450124786686,6.42463606415728,248.51966946109" />
+  </Links>
+  <Categories>
+    <Category Id="Contains" Label="Contient" Description="Si la source de la liaison contient ou non l'objet cible" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contenu par" IsContainment="True" OutgoingActionLabel="Contient" />
+    <Category Id="Database" />
+    <Category Id="Field" />
+    <Category Id="Field Optional" />
+    <Category Id="Field Primary" />
+    <Category Id="Table" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="Description" Label="Description" Description="Description" DataType="System.String" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="Group" Label="Groupe" Description="Affiche le nœud en tant que groupe" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="Label" Label="Étiquette" Description="Étiquette affichable d'un objet pouvant être annoté" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Table" ValueLabel="True">
+      <Condition Expression="HasCategory('Table')" />
+      <Setter Property="Background" Value="#FFC0C0C0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Schema" ValueLabel="True">
+      <Condition Expression="HasCategory('Schema')" />
+      <Setter Property="Background" Value="#FF7F9169" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Field Primary" ValueLabel="True">
+      <Condition Expression="HasCategory('Field Primary')" />
+      <Setter Property="Background" Value="#FF008000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Field Optional" ValueLabel="True">
+      <Condition Expression="HasCategory('Field Optional')" />
+      <Setter Property="Background" Value="#FF808040" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Field Foreign" ValueLabel="True">
+      <Condition Expression="HasCategory('Field Foreign')" />
+      <Setter Property="Background" Value="#FF8080FF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Field" ValueLabel="True">
+      <Condition Expression="HasCategory('Field')" />
+      <Setter Property="Background" Value="#FFC0A000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Database" ValueLabel="True">
+      <Condition Expression="HasCategory('Database')" />
+      <Setter Property="Background" Value="#FFFFFFFF" />
+    </Style>
+  </Styles>
+</DirectedGraph>

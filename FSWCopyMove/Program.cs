@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FSWCopyMove.Data;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +10,8 @@ namespace FSWCopyMove
 {
     static class Program
     {
+        //public static IConfiguration Configuration { get; }
+
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary>
