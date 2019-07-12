@@ -40,12 +40,20 @@ namespace FSWCopyMove
         private void _AddDirectory(String path)
         {
             // Ajout dans l'interface
-            this.checkedListBox1.Items.Add(path, true);
-            FSWExtended fsw = new FSWExtended();
-            fsw.Path = path;
-            fsw.WriteMsg += WriteLog;
-            fileSystemWatchers.Add(fsw);
-            fsw.EnableRaisingEvents = true;
+            if (Directory.Exists(path))
+            {
+                this.checkedListBox1.Items.Add(path, true);
+                FSWExtended fsw = new FSWExtended();
+                fsw.Path = path;
+                fsw.WriteMsg += WriteLog;
+                fileSystemWatchers.Add(fsw);
+                fsw.EnableRaisingEvents = true;
+            }
+            else
+            {
+                this.checkedListBox1.Items.Add(path, false);
+                //this.checkedListBox1.Items[this.checkedListBox1.Items.Count]
+            }
         }
 
         private void AddDirectory_Click(object sender, EventArgs e)

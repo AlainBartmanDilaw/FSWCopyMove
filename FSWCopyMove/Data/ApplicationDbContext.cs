@@ -18,7 +18,7 @@ namespace FSWCopyMove.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Data Source=c:\Users\Alain\Documents\Visual Studio\_Databases\SearchDuplicates.db");
+            optionsBuilder.UseSqlite(@"Data Source=d:\Profiles\aleglise\Documents\Repository\FSWCopyMove\_Databases\SearchDuplicates.db");
             base.OnConfiguring(optionsBuilder);
         }
 
