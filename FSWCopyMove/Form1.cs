@@ -43,11 +43,19 @@ namespace FSWCopyMove
             if (Directory.Exists(path))
             {
                 this.checkedListBox1.Items.Add(path, true);
+
+                DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+                row.Cells[0].Value = false;
+                row.Cells[1].Value = path;
+                row.Cells[2].Value = "Suppression";
+                this.dataGridView1.Rows.Add(row);
+
                 FSWExtended fsw = new FSWExtended();
                 fsw.Path = path;
                 fsw.WriteMsg += WriteLog;
                 fileSystemWatchers.Add(fsw);
                 fsw.EnableRaisingEvents = true;
+
             }
             else
             {
