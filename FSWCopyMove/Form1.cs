@@ -30,37 +30,30 @@ namespace FSWCopyMove
                 // 
                 //Console.WriteLine(item);
                 _AddDirectory(item.Val);
-
-                CheckListBoxButton clbb = new CheckListBoxButton();
-                clbb.checkBox1.Text = "Test";
-                listBox1.Items.Add(clbb);
             }
         }
 
         private void _AddDirectory(String path)
         {
             // Ajout dans l'interface
-            if (Directory.Exists(path))
+            bool directoryExist = Directory.Exists(path);
+            //this.checkedListBox1.Items.Add(path, true);
+
+            //DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+            dataGridView1.Rows.Add();
+            int index = this.dataGridView1.Rows.Count-1;
+
+            dataGridView1.Rows[index].Cells[0].Value = directoryExist;
+            dataGridView1.Rows[index].Cells[1].Value = path;
+            dataGridView1.Rows[index].Cells[2].Value = "Suppression";
+
+            if (directoryExist)
             {
-                this.checkedListBox1.Items.Add(path, true);
-
-                DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
-                row.Cells[0].Value = false;
-                row.Cells[1].Value = path;
-                row.Cells[2].Value = "Suppression";
-                this.dataGridView1.Rows.Add(row);
-
                 FSWExtended fsw = new FSWExtended();
                 fsw.Path = path;
                 fsw.WriteMsg += WriteLog;
                 fileSystemWatchers.Add(fsw);
                 fsw.EnableRaisingEvents = true;
-
-            }
-            else
-            {
-                this.checkedListBox1.Items.Add(path, false);
-                //this.checkedListBox1.Items[this.checkedListBox1.Items.Count]
             }
         }
 
@@ -113,6 +106,11 @@ namespace FSWCopyMove
 
         private void textBox1_SizeChanged(object sender, EventArgs e)
         {
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
