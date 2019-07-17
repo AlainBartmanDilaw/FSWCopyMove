@@ -40,11 +40,12 @@ namespace FSWCopyMove
 
             //DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
             dataGridView1.Rows.Add();
-            int index = this.dataGridView1.Rows.Count-1;
+            int index = this.dataGridView1.Rows.Count - 1;
 
             dataGridView1.Rows[index].Cells[0].Value = directoryExist;
             dataGridView1.Rows[index].Cells[1].Value = path;
             dataGridView1.Rows[index].Cells[2].Value = "Suppression";
+            dataGridView1.Rows[index].ReadOnly = false;
 
             if (directoryExist)
             {
@@ -102,7 +103,7 @@ namespace FSWCopyMove
                 {
                     textBox1.AppendText((FirstTime ? "" : Environment.NewLine) + String.Format(pFmt, args));
                 }
-                catch(Exception exc)
+                catch (Exception exc)
                 {
                     textBox1.AppendText((FirstTime ? "" : Environment.NewLine) + exc.Message + " : " + pFmt);
                 }
@@ -119,22 +120,26 @@ namespace FSWCopyMove
         {
         }
 
+        Object clicContent = new object();
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(dataGridView1.Columns[e.ColumnIndex].Name == "Column1")
-            //if (e.ColumnIndex == 0)
+            lock (clicContent)
             {
-                bool isChecked = (bool)dataGridView1[e.ColumnIndex, e.RowIndex].EditedFormattedValue;
-                String txt = "Checked to Unchecked";
-                if (isChecked == true)
+                if (!dataGridView1.Rows[e.RowIndex].ReadOnly &&
+                    dataGridView1.Columns[e.ColumnIndex].Name == "Column1")
                 {
-                    txt = "Unchecked to Checked";
-                }
-                this.BeginInvoke(new Action(() =>
+                    bool isChecked = (bool)dataGridView1[e.ColumnIndex, e.RowIndex].EditedFormattedValue;
+                    String txt = "Checked to Unchecked";
+                    if (isChecked == true)
                     {
-                        WriteLog(txt);
-                    }));
-                dataGridView1.EndEdit();
+                        txt = "Unchecked to Checked";
+                    }
+                    this.BeginInvoke(new Action(() =>
+                        {
+                            WriteLog(txt);
+                        }));
+                    dataGridView1.EndEdit();
+                }
             }
         }
     }
