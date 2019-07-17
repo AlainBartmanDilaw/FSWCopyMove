@@ -57,7 +57,7 @@ namespace FSWCopyMove
             else
             {
                 dataGridView1.Rows[index].ReadOnly = true;
-                dataGridView1.Rows[index].DefaultCellStyle.BackColor = Color.Red;
+                dataGridView1.Rows[index].DefaultCellStyle.ForeColor = Color.Red;
 
             }
         }
@@ -82,10 +82,6 @@ namespace FSWCopyMove
         List<FSWExtended> fileSystemWatchers = new List<FSWExtended>();
         private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            this.BeginInvoke(new Action(() =>
-            {
-                WriteLog(e.Index.ToString() + " " +e.CurrentValue + " => " + e.NewValue);
-            }));
         }
 
         const int TRUE = 0;
@@ -100,10 +96,16 @@ namespace FSWCopyMove
         }
         private void WriteLog(string pFmt, params object[] args)
         {
-            
             textBox1.Invoke((MethodInvoker)delegate ()
             {
-                textBox1.AppendText((FirstTime ? "" : Environment.NewLine) + String.Format(pFmt, args));
+                try
+                {
+                    textBox1.AppendText((FirstTime ? "" : Environment.NewLine) + String.Format(pFmt, args));
+                }
+                catch(Exception exc)
+                {
+                    textBox1.AppendText((FirstTime ? "" : Environment.NewLine) + exc.Message + " : " + pFmt);
+                }
                 textBox1.ScrollToCaret();
             });
         }
@@ -119,7 +121,21 @@ namespace FSWCopyMove
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if(dataGridView1.Columns[e.ColumnIndex].Name == "Column1")
+            //if (e.ColumnIndex == 0)
+            {
+                bool isChecked = (bool)dataGridView1[e.ColumnIndex, e.RowIndex].EditedFormattedValue;
+                String txt = "Checked to Unchecked";
+                if (isChecked == true)
+                {
+                    txt = "Unchecked to Checked";
+                }
+                this.BeginInvoke(new Action(() =>
+                    {
+                        WriteLog(txt);
+                    }));
+                dataGridView1.EndEdit();
+            }
         }
     }
 }
