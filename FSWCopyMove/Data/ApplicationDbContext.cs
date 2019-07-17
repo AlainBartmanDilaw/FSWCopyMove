@@ -29,7 +29,6 @@ namespace FSWCopyMove.Data
         {
             using (var dbContextTransaction = context.Database.BeginTransaction())
             {
-
                 dbContextTransaction.Commit();
             }
         }

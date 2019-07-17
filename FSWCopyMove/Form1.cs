@@ -27,7 +27,6 @@ namespace FSWCopyMove
             // Initialise % database.
             foreach (var item in AppContext.PrmVal.ToList())
             {
-                // 
                 //Console.WriteLine(item);
                 _AddDirectory(item.Val);
             }
@@ -55,6 +54,12 @@ namespace FSWCopyMove
                 fileSystemWatchers.Add(fsw);
                 fsw.EnableRaisingEvents = true;
             }
+            else
+            {
+                dataGridView1.Rows[index].ReadOnly = true;
+                dataGridView1.Rows[index].DefaultCellStyle.ForeColor = Color.Red;
+
+            }
         }
 
         private void AddDirectory_Click(object sender, EventArgs e)
@@ -65,6 +70,10 @@ namespace FSWCopyMove
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
+                    Prm rep = AppContext.Prm.Single(p => p.Nom == "REPERTOIRE");
+                    PrmVal val = AppContext.PrmVal.Where(p => p.Prm_Idt == rep.Idt).OrderByDescending(p => p.Seq_Num).First();
+                    AppContext.PrmVal.Add(new Data.PrmVal { Prm_Idt = rep.Idt, Val = fbd.SelectedPath, Seq_Num = val.Seq_Num + 1 });
+                    AppContext.SaveChanges();
                     _AddDirectory(fbd.SelectedPath);
                 }
             }

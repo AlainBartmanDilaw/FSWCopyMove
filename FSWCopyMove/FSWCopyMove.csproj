@@ -188,7 +188,6 @@
     <Compile Include="Data\Prm.cs" />
     <Compile Include="Data\PrmVal.cs" />
     <Compile Include="Debug.cs" />
-    <Compile Include="Donnees.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
